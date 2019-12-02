@@ -73,9 +73,6 @@ class Slide {
   }
 
   getPosition(direction) {
-    console.log(this.css);
-    console.log(direction);
-    console.log(this.css[direction]);
     return this.css[direction].replace("px", "");
   }
 
