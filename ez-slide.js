@@ -68,11 +68,11 @@ class Slide {
     return this.dom_element.scrollHeight;
   }
 
-  setPosition(direction, location) {
+  setLocation(direction, location) {
     this.css[direction] = location + "px";
   }
 
-  getPosition(direction) {
+  getLocation(direction) {
     return this.css[direction].replace("px", "");
   }
 
