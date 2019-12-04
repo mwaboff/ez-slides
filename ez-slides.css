@@ -61,6 +61,21 @@ body {
     width: 20px;
 }
 
+/*Navbar*/
+#navbar {
+    position: absolute;
+    width: 100%;
+    background: #333;
+    color: #DDD;
+    padding: 10px;
+}
+
+#title {
+    font-size: 35px;
+    /*font-weight: 5px;*/
+}
+
+
 /*Signature*/
 .signature {
     color: #EFEFEF;
