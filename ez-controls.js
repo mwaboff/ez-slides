@@ -41,38 +41,25 @@ class SlideshowControl {
   }
 
   createBackButton() {
-    let button_id = "ez-controls-backwards-" + this.id;
-    let new_button = document.createElement("div");
-    new_button.setAttribute("class", "ez-controls-directional-button");
-    new_button.setAttribute("class", "ez-controls-back-button");
-    new_button.setAttribute("id", button_id);
-    new_button.innerText = "<";
-
-    new_button.addEventListener("click", this.clickBackButton.bind(this));
-
+    let new_button = document.createElement("img");
+    new_button.setAttribute("src", "images/buttons/chevron-circle-left-solid.svg");
+    new_button.setAttribute("class", "ez-controls-button");
+    new_button.addEventListener("click", this.clickForwardButton.bind(this));
     return new_button;
   }
-  
+
   createForwardButton() {
-    let button_id = "ez-controls-forwards-" + this.id;
-    let new_button = document.createElement("div");
-    new_button.setAttribute("class", "ez-controls-directional-button");
-    new_button.setAttribute("class", "ez-controls-forward-button");
-    new_button.setAttribute("id", button_id);
-    new_button.innerText = ">";
-
+    let new_button = document.createElement("img");
+    new_button.setAttribute("src", "images/buttons/chevron-circle-right-solid.svg");
+    new_button.setAttribute("class", "ez-controls-button");
     new_button.addEventListener("click", this.clickForwardButton.bind(this));
-
     return new_button;
   }
   
   createAutoplayButton() {
-    let button_id = "ez-controls-forwards-" + this.id;
-    let new_button = document.createElement("div");
-    new_button.setAttribute("class", "ez-controls-play-button");
-    new_button.setAttribute("id", button_id);
-    new_button.innerText = "||";
-
+    let new_button = document.createElement("img");
+    new_button.setAttribute("src", "images/buttons/play-circle-solid.svg");
+    new_button.setAttribute("class", "ez-controls-button ez-controls-play-button");
     new_button.addEventListener("click", this.clickAutoplayButton.bind(this));
 
     return new_button;
@@ -92,5 +79,17 @@ class SlideshowControl {
 
   clickAutoplayButton() {
     this.slideshow.clickAutoplayButton();
+    this.changePlayButtonImage();
+  }
+
+  changePlayButtonImage() {
+    let play_buttons = this.dom_element.getElementsByClassName("ez-controls-play-button");
+    for (let button of play_buttons) {
+      if(this.slideshow.autoplay_interval_handler) {
+        button.setAttribute("src", "images/buttons/pause-circle-solid.svg");
+      } else {
+        button.setAttribute("src", "images/buttons/play-circle-solid.svg");
+      }
+    }
   }
 }

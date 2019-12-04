@@ -142,7 +142,7 @@ class Slideshow {
   stopAutoplay() {
     clearInterval(this.autoplay_interval_handler);
     this.autoplay_interval_handler = null;
-    }
+  }
 
   forceIndexWithinRange(target_index) {
     if (target_index < 0) {

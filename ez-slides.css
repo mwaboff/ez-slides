@@ -9,9 +9,10 @@ body {
     font-family: 'Work Sans', sans-serif;
 }
 
-#content-container {
+.content-container {
     height: 100vh;
     display: flex;
+    flex-direction: row;
 }
 
 .slideshow-container {
@@ -44,6 +45,7 @@ body {
 
 .ez-controls {
     width: 550px;
+    padding: 5px;
 
     margin: 0 auto;
     align-self: center;
@@ -51,4 +53,9 @@ body {
     display: flex;
     justify-content: space-between;
 
+}
+
+.ez-controls-button {
+    height: 20px;
+    width: 20px;
 }
