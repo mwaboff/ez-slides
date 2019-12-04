@@ -42,7 +42,7 @@ class SlideshowControl {
     let new_button = document.createElement("img");
     new_button.setAttribute("src", "images/buttons/chevron-circle-left-solid.svg");
     new_button.setAttribute("class", "ez-controls-button");
-    new_button.addEventListener("click", this.clickForwardButton.bind(this));
+    new_button.addEventListener("click", this.clickBackButton.bind(this));
     return new_button;
   }
 
