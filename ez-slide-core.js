@@ -8,6 +8,7 @@
 
   EZSlides.SLIDESHOW_CLASS_NAME = "ez-slideshow";
   EZSlides.SLIDE_CLASS_NAME = "ez-slide";
+  EZSlides.CONTROLS_CLASS_NAME = "ez-controls";
 
   var SLIDESHOW_MANAGER;
 

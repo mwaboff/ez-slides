@@ -10,20 +10,38 @@
     <title>EZ-Slides Demo</title>
     <link rel="stylesheet" href="ez-slides.css">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/22d8f517f8.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="ez-slide.js"></script>
     <script type="text/javascript" src="ez-slideshow.js"></script>
+    <script type="text/javascript" src="ez-controls.js"></script>
+
     <script type="text/javascript" src="ez-manager.js"></script>
 </head>
 <body>
     <div id="content-container">
+        <div class="slideshow-container">
+            <div class="ez-slideshow" data-slideshow-id="0">
+                <div class="ez-slide" data-image="images/breakfast.jpg"></div>
+                <div class="ez-slide" data-image="images/french_toast.jpg"></div>
+                <div class="ez-slide" data-image="images/squash_soup.jpg"></div>
+                <div class="ez-slide" data-image="images/grilled_chicken.jpg"></div>
+                <div class="ez-slide" data-image="images/icecream.jpg"></div>
+            </div>
 
-        <div class="ez-slideshow">
-            <div class="ez-slide" data-image="images/breakfast.jpg"></div>
-            <div class="ez-slide" data-image="images/french_toast.jpg"></div>
-            <div class="ez-slide" data-image="images/squash_soup.jpg"></div>
-            <div class="ez-slide" data-image="images/grilled_chicken.jpg"></div>
-            <div class="ez-slide" data-image="images/icecream.jpg"></div>
+            <div class="ez-controls" data-slideshow-id="0"></div>
+        </div>
+
+        <div class="slideshow-container">
+            <div class="ez-slideshow" data-slideshow-id="1">
+                <div class="ez-slide" data-image="images/breakfast.jpg"></div>
+                <div class="ez-slide" data-image="images/french_toast.jpg"></div>
+                <div class="ez-slide" data-image="images/squash_soup.jpg"></div>
+                <div class="ez-slide" data-image="images/grilled_chicken.jpg"></div>
+                <div class="ez-slide" data-image="images/icecream.jpg"></div>
+            </div>
+
+            <div class="ez-controls" data-slideshow-id="1"></div>
         </div>
 
     </div>

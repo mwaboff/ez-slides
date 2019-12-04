@@ -7,6 +7,8 @@ class Slideshow {
     this.slide_list = slide_list;
     this.dom_element = dom_element;
     this.current_slide_index = 0;
+
+    this.autoplay_interval_handler = null;
   }
 
   static constructFromHtml(slideshow_id, html_element) {
@@ -31,13 +33,17 @@ class Slideshow {
     this.writeUniqueHtmlIdsToDom();
     this.initializeSlides();
     this.positionInitialSlides();
-    this.initializeButtons();
+    // this.initializeButtons();
   }
 
   writeUniqueHtmlIdsToDom() {
     let slideshow_id_text = "ez-slideshow-" + this.id;
     this.dom_element.setAttribute("id", slideshow_id_text);
-    this.dom_element.setAttribute("data-slideshow-id", this.id);
+    if (!Object.keys(this.dom_element.dataset).includes("slideshowId")) {
+      console.log('does not have slideshow-id');
+      this.dom_element.setAttribute("data-slideshow-id", this.id);
+
+    }
   }
 
   initializeSlides() {
@@ -52,13 +58,8 @@ class Slideshow {
     this.current_slide_index = 0;
   }
 
-  positionSlidesHorizontally() {
-    for (let i = 0; i < this.slide_list.length; i++) {
-      let slide = this.slide_list[i];
-      let position = slide.getWidth() * i;
-      slide.setLocation("left", position);
-      slide.updateCSS();
-    }
+  getId() {
+    return this.id;
   }
 
   initializeButtons() {
@@ -68,6 +69,15 @@ class Slideshow {
     // this.dom_element.append(forward_button);
     document.getElementById("content-container").prepend(back_button);
     document.getElementById("content-container").append(forward_button);
+  }
+
+  positionSlidesHorizontally() {
+    for (let i = 0; i < this.slide_list.length; i++) {
+      let slide = this.slide_list[i];
+      let position = slide.getWidth() * i;
+      slide.setLocation("left", position);
+      slide.updateCSS();
+    }
   }
 
   createBackButton() {
@@ -106,6 +116,14 @@ class Slideshow {
     this.moveToSlideIndex(next_index);
   }
 
+  clickAutoplayButton() {
+    if(!this.autoplay_interval_handler) {
+      this.initiateAutoplay();
+    } else {
+      this.stopAutoplay();
+    }
+  }
+
   moveToSlideIndex(target_slide_index) {
     target_slide_index = this.forceIndexWithinRange(target_slide_index);
     let slides_to_move = this.current_slide_index - target_slide_index;
@@ -116,6 +134,15 @@ class Slideshow {
       this.moveForwardByCount(slides_to_move);
     }
   }
+
+  initiateAutoplay() {
+    this.autoplay_interval_handler = setInterval(this.clickForwardButton.bind(this), 3000);
+  }
+
+  stopAutoplay() {
+    clearInterval(this.autoplay_interval_handler);
+    this.autoplay_interval_handler = null;
+    }
 
   forceIndexWithinRange(target_index) {
     if (target_index < 0) {
