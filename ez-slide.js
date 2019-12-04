@@ -27,7 +27,6 @@ class Slide {
 
   writeUniqueHtmlIdsToDom() {
     let slide_id_text = "ez-slideshow-" + this.slideshow_id + "-slide-" + this.id;
-
     this.dom_element.setAttribute("id", slide_id_text);
     this.dom_element.setAttribute("data-slide-id", this.id);
   }

@@ -22,9 +22,7 @@ class SlideshowControl {
   }
 
   associateSlideshow(slideshow) {
-    console.log("associating slideshow!!!!");
     this.slideshow = slideshow;
-    console.log(slideshow);
   }
 
   initialize() {

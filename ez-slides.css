@@ -7,6 +7,7 @@
 
 body {
     font-family: 'Work Sans', sans-serif;
+    background: url("https://s3.amazonaws.com/noupe/2009/10/pattern-34.jpg");
 }
 
 .content-container {
@@ -58,4 +59,16 @@ body {
 .ez-controls-button {
     height: 20px;
     width: 20px;
+}
+
+/*Signature*/
+.signature {
+    color: #EFEFEF;
+    z-index: 1000;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    padding: 5px;
+    font-family: 'Work Sans', sans-serif;
 }

@@ -11,6 +11,7 @@ class Slideshow {
     this.autoplay_interval_handler = null;
   }
 
+
   static constructFromHtml(slideshow_id, html_element) {
     let slide_dom_list = html_element.getElementsByClassName(EZSlides.SLIDE_CLASS_NAME);
     let slide_list = Slideshow.createSlidesFromHtml(slideshow_id, slide_dom_list);
@@ -18,6 +19,7 @@ class Slideshow {
     let new_slideshow = new Slideshow(slideshow_id, slide_list, html_element);
     return new_slideshow;
   }
+
 
   static createSlidesFromHtml(slideshow_index, slide_dom_list) {
     let slide_list = []
@@ -29,12 +31,13 @@ class Slideshow {
     return slide_list;
   }
 
+
   initialize() {
     this.writeUniqueHtmlIdsToDom();
     this.initializeSlides();
     this.positionInitialSlides();
-    // this.initializeButtons();
   }
+
 
   writeUniqueHtmlIdsToDom() {
     let slideshow_id_text = "ez-slideshow-" + this.id;
@@ -46,30 +49,19 @@ class Slideshow {
     }
   }
 
+
   initializeSlides() {
     for (let slide of this.slide_list) {
       slide.initialize();
     }
   }
 
+
   positionInitialSlides() {
-    // TODO: Add different arrangements.
     this.positionSlidesHorizontally();
     this.current_slide_index = 0;
   }
 
-  getId() {
-    return this.id;
-  }
-
-  initializeButtons() {
-    let back_button = this.createBackButton();
-    let forward_button = this.createForwardButton();
-    // this.dom_element.prepend(back_button);
-    // this.dom_element.append(forward_button);
-    document.getElementById("content-container").prepend(back_button);
-    document.getElementById("content-container").append(forward_button);
-  }
 
   positionSlidesHorizontally() {
     for (let i = 0; i < this.slide_list.length; i++) {
@@ -80,41 +72,23 @@ class Slideshow {
     }
   }
 
-  createBackButton() {
-    let button_id = "ez-slideshow-" + this.id + "-back";
-    let new_button = document.createElement("div");
-    new_button.setAttribute("class", "ez-slides-directional-button");
-    new_button.setAttribute("class", "ez-slides-back-button");
-    new_button.setAttribute("id", button_id);
-    new_button.innerText = "<";
 
-    new_button.addEventListener("click", this.clickBackButton.bind(this));
-
-    return new_button;
+  getId() {
+    return this.id;
   }
 
-  createForwardButton() {
-    let button_id = "ez-slideshow-" + this.id + "-forward";
-    let new_button = document.createElement("div");
-    new_button.setAttribute("class", "ez-slides-directional-button");
-    new_button.setAttribute("class", "ez-slides-forward-button");
-    new_button.setAttribute("id", button_id);
-    new_button.innerText = ">";
-
-    new_button.addEventListener("click", this.clickForwardButton.bind(this));
-
-    return new_button;
-  }
 
   clickBackButton() {
     let next_index = this.current_slide_index - 1;
     this.moveToSlideIndex(next_index);
   }
 
+
   clickForwardButton() {
     let next_index = this.current_slide_index + 1;
     this.moveToSlideIndex(next_index);
   }
+
 
   clickAutoplayButton() {
     if(!this.autoplay_interval_handler) {
@@ -123,6 +97,7 @@ class Slideshow {
       this.stopAutoplay();
     }
   }
+
 
   moveToSlideIndex(target_slide_index) {
     target_slide_index = this.forceIndexWithinRange(target_slide_index);
@@ -135,14 +110,17 @@ class Slideshow {
     }
   }
 
+
   initiateAutoplay() {
     this.autoplay_interval_handler = setInterval(this.clickForwardButton.bind(this), 3000);
   }
+
 
   stopAutoplay() {
     clearInterval(this.autoplay_interval_handler);
     this.autoplay_interval_handler = null;
   }
+
 
   forceIndexWithinRange(target_index) {
     if (target_index < 0) {
@@ -153,6 +131,7 @@ class Slideshow {
     return target_index;
   }
 
+
   moveBackwardByCount(slides_to_move) {
     while (slides_to_move != 0) {
       this.moveBackwardOnce();
@@ -160,12 +139,14 @@ class Slideshow {
     }
   }
 
+
   moveForwardByCount(slides_to_move) {
     while (slides_to_move != 0) {
       this.moveForwardOnce();
       slides_to_move--;
     }
   }
+
 
   moveBackwardOnce() {
     for (let slide of this.slide_list) {
@@ -176,6 +157,7 @@ class Slideshow {
     }
     this.current_slide_index++;
   }
+
 
   moveForwardOnce() {
     for (let slide of this.slide_list) {

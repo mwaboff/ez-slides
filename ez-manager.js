@@ -8,10 +8,10 @@ class SlideshowManager {
   }
 
   static constructFromDomSearch() {
-    var slideshow_doms = SlideshowManager.findSlideshowsFromDom();
-    var control_doms = SlideshowManager.findControlsFromDom();
-    var slideshows = SlideshowManager.createSlideshowsFromDom(slideshow_doms);
-    var controls = SlideshowManager.createControlsFromDom(control_doms);
+    let slideshow_doms = SlideshowManager.findSlideshowsFromDom();
+    let control_doms = SlideshowManager.findControlsFromDom();
+    let slideshows = SlideshowManager.createSlideshowsFromDom(slideshow_doms);
+    let controls = SlideshowManager.createControlsFromDom(control_doms);
     let new_manager = new SlideshowManager(slideshows, controls);
     return new_manager;
   }
@@ -59,9 +59,7 @@ class SlideshowManager {
   associateControlsWithSlideshows() {
     for (let control of this.control_list) {
       let expected_slideshow_id = control.getExpectedSlideshowId();
-      console.log("expected slideshow ID: " + expected_slideshow_id);
       let found_slideshow = this.findSlideshowWithId(expected_slideshow_id);
-      console.log("found slideshow ID: " + found_slideshow);
       control.associateSlideshow(found_slideshow);
     }
   }
@@ -73,11 +71,8 @@ class SlideshowManager {
   }
 
   findSlideshowWithId(target_id) {
-    console.log("Searching for target Slideshow with ID: " + target_id);
     for (let slideshow of this.slideshow_list) {
-      console.log("ID of this slideshow is: " + slideshow.getId());
       if (parseInt(slideshow.getId()) === parseInt(target_id)) {
-        console.log("slideshow matches!");
         return slideshow;
       }
     }
